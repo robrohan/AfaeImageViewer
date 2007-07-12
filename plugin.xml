@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+	id="com.rohanclan.imageviewer"
+	name="Image Viewer Plug-in"
+	version="0.8.7"
+	provider-name="RohanClan"
+	class="com.rohanclan.imageviewer.ImageViewerPlugin"
+>
+	<runtime>
+		<library name="imageviewer.jar">
+			<export name="*"/>
+		</library>
+  <library name="libs/ImageLibs_0.5.2.jar">
+     <export name="*"/>
+  </library>
+	</runtime>
+	
+	<requires>
+		<import plugin="org.eclipse.ui"/>
+		<import plugin="org.eclipse.core.resources" version="3.0.0" match="greaterOrEqual"/>
+		<import plugin="org.eclipse.ui.editors" version="3.0.0" match="greaterOrEqual"/>
+		<import plugin="org.eclipse.ui.ide" version="3.0.0" match="greaterOrEqual"/>
+		<import plugin="org.eclipse.core.runtime"/>
+	</requires>
+	
+	<!-- //////////////////////////// Editor //////////////////////////////////// -->
+	<extension point="org.eclipse.ui.editors">
+		<editor id="com.rohanclan.imageviewer.editor"
+			name="image viewer"
+			icon="icons/ctool16/imageviewer.gif"
+			class="com.rohanclan.imageviewer.editor.ImageViewEditor"
+			extensions="gif,jpg,jpeg,png,bmp,ico"
+		/>
+	</extension>
+	
+	<!-- /////////////////////////// Actions //////////////////////////////////// -->
+	<extension point="org.eclipse.ui.editorActions">
+		<editorContribution targetID="com.rohanclan.imageviewer.editor"
+			id="com.rohanclan.imageviewer.editor.actions">
+			<menu label="&amp;Image" path="window"
+				id="com.rohanclan.imageviewer.editor.actions.menu">
+				<separator name="maingroup" />
+				<separator name="convert" />
+			</menu>
+			
+			<!-- Rotate Action
+			definitionId="com.rohanclan.imageviewer.editor.actions.Rotate"
+			while this is cool, its pretty pointless, so I am removing it untill
+			save milestone
+			-->
+			<!-- 
+			<action label="&amp;Rotate"
+				icon="icons/ctool16/rotate.gif"
+				tooltip="Rotate"
+				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+				toolbarPath="push_group"
+				enablesFor="*"
+				id="ImageViewer.toolbar.rotate">
+			</action>
+			-->
+			
+			<action 
+				label="&amp;Fit to Window"
+				definitionId="ImageViewer.toolbar.fit"
+				icon="icons/ctool16/fit.gif"
+				tooltip="Fit to window"
+				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+				toolbarPath="push_group"
+				enablesFor="*"
+				id="ImageViewer.toolbar.fit">
+			</action>
+			
+			<action 
+				label="&amp;Original Size"
+				definitionId="ImageViewer.toolbar.original"
+				icon="icons/ctool16/original.gif"
+				tooltip="Original size"
+				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+				toolbarPath="push_group"
+				enablesFor="*"
+				id="ImageViewer.toolbar.original">
+			</action>
+			
+			<action 
+				label="Zoom &amp;In"
+				definitionId="ImageViewer.toolbar.zoominID"
+				id="ImageViewer.toolbar.zoomin"
+				icon="icons/ctool16/zoomin.gif"
+				tooltip="Zoom In"
+				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+				toolbarPath="push_group"
+				enablesFor="*">
+			</action>
+			
+			<action 
+				label="Zoom &amp;Out"
+				definitionId="ImageViewer.toolbar.zoomoutID"
+				id="ImageViewer.toolbar.zoomout"
+				icon="icons/ctool16/zoomout.gif"
+				tooltip="Zoom Out"
+				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+				toolbarPath="push_group"
+				enablesFor="*"
+				>
+			</action>
+			
+			<action 
+				label="Create 1/2 Size"
+				definitionId="ImageViewer.toolbar.convertID"
+				id="I.S_.5"
+				icon="icons/ctool16/newresize.gif"
+				tooltip="Create 1/2 Size"
+				class="com.rohanclan.imageviewer.actions.ResizeImageAction"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/convert"
+				toolbarPath="convert_group"
+				enablesFor="*">
+			</action>
+			
+			<action 
+				label="Create Double Size"
+				definitionId="ImageViewer.toolbar.convertID"
+				id="I.S_2"
+				icon="icons/ctool16/newresize.gif"
+				tooltip="Create Double Size"
+				class="com.rohanclan.imageviewer.actions.ResizeImageAction"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/convert"
+				toolbarPath="convert_group"
+				enablesFor="*">
+			</action>
+			
+			<action 
+				label="Create 16x16 Image"
+				definitionId="ImageViewer.toolbar.convertID"
+				id="I.S_16x16"
+				icon="icons/ctool16/newresize.gif"
+				tooltip="Create 16x16 Image"
+				class="com.rohanclan.imageviewer.actions.ResizeImageAction"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/convert"
+				toolbarPath="convert_group"
+				enablesFor="*">
+			</action>
+			
+			<action 
+				label="Create 32x32 Image"
+				definitionId="ImageViewer.toolbar.convertID"
+				id="I.S_32x32"
+				icon="icons/ctool16/newresize.gif"
+				tooltip="Create 32x32 Image"
+				class="com.rohanclan.imageviewer.actions.ResizeImageAction"
+				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/convert"
+				toolbarPath="convert_group"
+				enablesFor="*">
+			</action>
+			
+		</editorContribution>
+	</extension>
+	
+	<!-- /////////////////////////// commands ///////////////////////////////////
+	<extension point="org.eclipse.ui.commands">
+		<category
+			name="Image Viewer"
+			description="Image Viewer key bindings"
+			id="ImageViewer.commandCategory">
+		</category>
+		
+		<!- Zoom in ->
+		<command 
+			name="Zoom In"
+			description="Zoom In"
+			category="ImageViewer.commandCategory"
+			id="ImageViewer.toolbar.zoominID"
+		>
+		</command>
+		<keyBinding
+			keySequence="Ctrl+Shift+="
+			contextId="org.eclipse.ui.textEditorScope"
+			commandId="ImageViewer.toolbar.zoominID"
+			keyConfigurationId="org.eclipse.ui.defaultAcceleratorConfiguration"
+		> 
+		</keyBinding>
+		
+		<!- Zoom out ->
+		<command 
+			name="Zoom Out"
+			description="Zoom Out"
+			category="ImageViewer.commandCategory"
+			id="ImageViewer.toolbar.zoomout"
+		>
+		</command>
+		<keyBinding
+			keySequence="Ctrl+Shift+-"
+			contextId="org.eclipse.ui.textEditorScope"
+			commandId="ImageViewer.toolbar.zoomout"
+			keyConfigurationId="org.eclipse.ui.defaultAcceleratorConfiguration"
+		> 
+		</keyBinding>
+	</extension> -->
+	
+	<extension point="org.eclipse.team.core.fileTypes">
+		<fileTypes extension="gif" type="binary" />
+		<fileTypes extension="jpg" type="binary" />
+		<fileTypes extension="jpeg" type="binary" />
+		<fileTypes extension="bmp" type="binary" />
+		<fileTypes extension="png" type="binary" />
+		<fileTypes extension="ico" type="binary" />
+	</extension>
+</plugin>
