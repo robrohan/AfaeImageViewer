@@ -3,7 +3,7 @@
 <plugin
 	id="com.rohanclan.imageviewer"
 	name="Image Viewer Plug-in"
-	version="0.8.7"
+	version="0.9"
 	provider-name="RohanClan"
 	class="com.rohanclan.imageviewer.ImageViewerPlugin"
 >
@@ -11,8 +11,10 @@
 		<library name="imageviewer.jar">
 			<export name="*"/>
 		</library>
-  <library name="libs/ImageLibs_0.5.2.jar">
-     <export name="*"/>
+  <library name="libs/ImageLibs_0.6.0.jar">
+     <export
+           name="*">
+     </export>
   </library>
 	</runtime>
 	
