@@ -32,42 +32,37 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * The main plugin class to be used in the desktop.
  */
 public class ImageViewerPlugin extends AbstractUIPlugin {
-	
+
 	/** The bundle of resources for the plugin */
 	private ResourceBundle resourceBundle;
-	
-//	The shared instance.
+
+	// The shared instance.
 	private static ImageViewerPlugin plugin;
-	
-	/* public ImageViewerPlugin(IPluginDescriptor descriptor) {
-		super(descriptor);
-	} */
-	
-	public ImageViewerPlugin() 
-	{
+
+	/*
+	 * public ImageViewerPlugin(IPluginDescriptor descriptor) {
+	 * super(descriptor); }
+	 */
+
+	public ImageViewerPlugin() {
 		super();
 		plugin = this;
-		try 
-		{
-			resourceBundle = ResourceBundle.getBundle("plugin");	
-		} 
-		catch (MissingResourceException x) 
-		{
+		try {
+			resourceBundle = ResourceBundle.getBundle("plugin");
+		} catch (MissingResourceException x) {
 			x.printStackTrace(System.err);
 			resourceBundle = null;
 		}
 	}
-	
-	public ResourceBundle getResourceBundle()
-	{
+
+	public ResourceBundle getResourceBundle() {
 		return resourceBundle;
 	}
-	
+
 	/**
 	 * Returns the shared instance.
 	 */
-	public static ImageViewerPlugin getDefault() 
-	{
+	public static ImageViewerPlugin getDefault() {
 		return plugin;
 	}
 }

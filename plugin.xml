@@ -41,7 +41,7 @@
 	<extension point="org.eclipse.ui.editorActions">
 		<editorContribution targetID="com.rohanclan.imageviewer.editor"
 			id="com.rohanclan.imageviewer.editor.actions">
-			<menu label="&amp;Image" path="window"
+			<menu label="Image" path="window"
 				id="com.rohanclan.imageviewer.editor.actions.menu">
 				<separator name="maingroup" />
 				<separator name="convert" />
@@ -65,7 +65,7 @@
 			-->
 			
 			<action 
-				label="&amp;Fit to Window"
+				label="Fit to Window"
 				definitionId="ImageViewer.toolbar.fit"
 				icon="icons/ctool16/fit.gif"
 				tooltip="Fit to window"
@@ -77,7 +77,7 @@
 			</action>
 			
 			<action 
-				label="&amp;Original Size"
+				label="Original Size"
 				definitionId="ImageViewer.toolbar.original"
 				icon="icons/ctool16/original.gif"
 				tooltip="Original size"
@@ -88,29 +88,30 @@
 				id="ImageViewer.toolbar.original">
 			</action>
 			
-			<action 
-				label="Zoom &amp;In"
-				definitionId="ImageViewer.toolbar.zoominID"
-				id="ImageViewer.toolbar.zoomin"
-				icon="icons/ctool16/zoomin.gif"
-				tooltip="Zoom In"
-				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
-				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
-				toolbarPath="push_group"
-				enablesFor="*">
+			<action
+         class="com.rohanclan.imageviewer.actions.ActionZoomIn"
+         definitionId="ImageViewer.toolbar.zoominID"
+         enablesFor="*"
+         icon="icons/ctool16/zoomin.gif"
+         id="ImageViewer.toolbar.zoomin"
+         label="Zoom In"
+         menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+         style="push"
+         toolbarPath="push_group"
+         tooltip="Zoom In">
 			</action>
 			
-			<action 
-				label="Zoom &amp;Out"
-				definitionId="ImageViewer.toolbar.zoomoutID"
-				id="ImageViewer.toolbar.zoomout"
-				icon="icons/ctool16/zoomout.gif"
-				tooltip="Zoom Out"
-				class="com.rohanclan.imageviewer.actions.ImageActionDelegate"
-				menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
-				toolbarPath="push_group"
-				enablesFor="*"
-				>
+			<action
+         class="com.rohanclan.imageviewer.actions.ActionZoomOut"
+         definitionId="ImageViewer.toolbar.zoomoutID"
+         enablesFor="*"
+         icon="icons/ctool16/zoomout.gif"
+         id="ImageViewer.toolbar.zoomout"
+         label="Zoom Out"
+         menubarPath="com.rohanclan.imageviewer.editor.actions.menu/maingroup"
+         style="push"
+         toolbarPath="push_group"
+         tooltip="Zoom Out">
 			</action>
 			
 			<!-- definitionId="ImageViewer.toolbar.convertID" -->
@@ -246,13 +247,34 @@
           commandId="ImageViewer.toolbar.zoominID"
           contextId="org.eclipse.ui.contexts.window"
           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-          sequence="M1+SHIFT+=">
+          sequence="M1+M2+=">
     </key>
     <key
           commandId="ImageViewer.toolbar.zoomoutID"
           contextId="org.eclipse.ui.contexts.window"
           schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-          sequence="M1+SHIFT+-">
+          sequence="M1+M2+-">
     </key>
+ </extension>
+ <extension
+       point="org.eclipse.ui.popupMenus">
+    <viewerContribution
+          id="AfaeImageViewer.PopupMenu"
+          targetID="#EditorContext">
+       <action
+             class="com.rohanclan.imageviewer.actions.ActionZoomIn"
+             definitionId="ImageViewer.toolbar.zoominID"
+             icon="icons/ctool16/zoomin.gif"
+             id="ImageViewer.toolbar.zoominID"
+             label="Zoom In">
+       </action>
+       <action
+             class="com.rohanclan.imageviewer.actions.ActionZoomOut"
+             definitionId="ImageViewer.toolbar.zoomoutID"
+             icon="icons/ctool16/zoomout.gif"
+             id="ImageViewer.toolbar.zoomoutID"
+             label="Zoom Out">
+       </action>
+    </viewerContribution>
  </extension>
 </plugin>

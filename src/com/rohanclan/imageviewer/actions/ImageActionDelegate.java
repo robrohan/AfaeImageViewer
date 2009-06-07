@@ -70,17 +70,12 @@ public class ImageActionDelegate implements IEditorActionDelegate {
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
+	//TODO: Break these out into actions like with ZoomOut ZoomIn
 	public void run(IAction action) 
 	{
 		String id = action.getId();
 		//System.out.println("running " + id.toString());
 		SWTImageCanvas imageCanvas = view.imageCanvas;
-		
-		/* if(id.equals("toolbar.open"))
-		{
-			imageCanvas.onFileOpen();
-			return;
-		} */
 		
 		if (imageCanvas.getSourceImage() == null) 
 			return;
