@@ -3,8 +3,8 @@
 <plugin
 	id="com.rohanclan.imageviewer"
 	name="Image Viewer Plug-in"
-	version="0.9"
-	provider-name="RohanClan"
+	version="0.9.1"
+	provider-name="Rob Rohan"
 	class="com.rohanclan.imageviewer.ImageViewerPlugin"
 >
 	<runtime>
@@ -28,12 +28,13 @@
 	
 	<!-- //////////////////////////// Editor //////////////////////////////////// -->
 	<extension point="org.eclipse.ui.editors">
-		<editor id="com.rohanclan.imageviewer.editor"
-			name="image viewer"
-			icon="icons/ctool16/imageviewer.gif"
-			class="com.rohanclan.imageviewer.editor.ImageViewEditor"
-			extensions="gif,jpg,jpeg,png,bmp,ico"
-		/>
+		<editor
+        class="com.rohanclan.imageviewer.editor.ImageViewEditor"
+        default="true"
+        extensions="gif,jpg,jpeg,png,bmp,ico"
+        icon="icons/ctool16/imageviewer.gif"
+        id="com.rohanclan.imageviewer.editor"
+        name="Afae Image Viewer"/>
 	</extension>
 	
 	<!-- /////////////////////////// Actions //////////////////////////////////// -->
@@ -112,9 +113,9 @@
 				>
 			</action>
 			
+			<!-- definitionId="ImageViewer.toolbar.convertID" -->
 			<action 
 				label="Create 1/2 Size"
-				definitionId="ImageViewer.toolbar.convertID"
 				id="I.S_.5"
 				icon="icons/ctool16/newresize.gif"
 				tooltip="Create 1/2 Size"
@@ -124,9 +125,9 @@
 				enablesFor="*">
 			</action>
 			
+			<!-- definitionId="ImageViewer.toolbar.convertID" -->
 			<action 
 				label="Create Double Size"
-				definitionId="ImageViewer.toolbar.convertID"
 				id="I.S_2"
 				icon="icons/ctool16/newresize.gif"
 				tooltip="Create Double Size"
@@ -136,9 +137,9 @@
 				enablesFor="*">
 			</action>
 			
+			<!-- definitionId="ImageViewer.toolbar.convertID" -->
 			<action 
 				label="Create 16x16 Image"
-				definitionId="ImageViewer.toolbar.convertID"
 				id="I.S_16x16"
 				icon="icons/ctool16/newresize.gif"
 				tooltip="Create 16x16 Image"
@@ -148,9 +149,9 @@
 				enablesFor="*">
 			</action>
 			
+			<!-- definitionId="ImageViewer.toolbar.convertID" -->
 			<action 
 				label="Create 32x32 Image"
-				definitionId="ImageViewer.toolbar.convertID"
 				id="I.S_32x32"
 				icon="icons/ctool16/newresize.gif"
 				tooltip="Create 32x32 Image"
@@ -212,4 +213,46 @@
 		<fileTypes extension="png" type="binary" />
 		<fileTypes extension="ico" type="binary" />
 	</extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          categoryId="AfaeImageViewer.commandCategory"
+          id="ImageViewer.toolbar.fit"
+          name="Fit to Window">
+    </command>
+    <command
+          categoryId="AfaeImageViewer.commandCategory"
+          id="ImageViewer.toolbar.original"
+          name="Original Size">
+    </command>
+    <command
+          categoryId="AfaeImageViewer.commandCategory"
+          id="ImageViewer.toolbar.zoominID"
+          name="Zoom In">
+    </command>
+    <command
+          categoryId="AfaeImageViewer.commandCategory"
+          id="ImageViewer.toolbar.zoomoutID"
+          name="Zoom Out">
+    </command>
+    <category
+          id="AfaeImageViewer.commandCategory"
+          name="Afae Image Viewer">
+    </category>
+ </extension>
+ <extension
+       point="org.eclipse.ui.bindings">
+    <key
+          commandId="ImageViewer.toolbar.zoominID"
+          contextId="org.eclipse.ui.contexts.window"
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          sequence="M1+SHIFT+=">
+    </key>
+    <key
+          commandId="ImageViewer.toolbar.zoomoutID"
+          contextId="org.eclipse.ui.contexts.window"
+          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+          sequence="M1+SHIFT+-">
+    </key>
+ </extension>
 </plugin>
